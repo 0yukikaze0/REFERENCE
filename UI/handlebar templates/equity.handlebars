@@ -1,0 +1,156 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Broadridge Financial Solutions</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="icon" type="image/x-icon" href="css/img/favicon.ico">   
+<link rel= "stylesheet" href="/css/style.css">
+<link rel= "stylesheet" href="/css/bootstrap.css">
+<script type="text/javascript" src="/js/dropdown.js"></script>
+</head>
+<body >
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+	      	<div class="navbar-header">
+	      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	      			<span class="sr-only">Toggle navigation</span>
+	      			<span class="icon-bar"></span>
+	      			<span class="icon-bar"></span>
+	      			<span class="icon-bar"></span>
+	      		</button>
+	      		<a class="navbar-brand" href="/">Broadridge</a>
+	      	</div>
+	            <ul class = "nav navbar-nav navbar-right">
+	          		<li><a href="/users/logout">Logout</a></li>
+	          	</ul>
+	          	
+	          	<ul class = "nav navbar-nav ">
+          			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn" onclick="myFunction()">Security Setup</a>
+	          			<div class="dropdown-content" id="myDropdown">
+	          				<a href="/users/corporate">Corporate Bond</a>
+	          				<a href="/users/equity">Equity</a>
+	          				<a href="/users/equity">Preferred Equity</a>
+	          				<a href="/users/equity">ETF</a>
+	          				<a href="/users/warrants">Warrants</a>
+	          				<a href="/users/warrants">Rights</a>
+	          				<a href="/users/warrants">ADR</a>
+	          			</div>
+          			</li>
+          			<li><a href="/users/corporate_enquiry">Enquire Security</a></li>
+
+    		</ul>
+	        </div>
+	    </div class="container">
+	</nav> 
+	
+	<div class="container" id="csec" >
+	    <h1 class="well">Equity Security Setup</h1>
+		<div class="col-lg-12">
+			<div class="row">
+				<form method = "post" action="/equity">
+					<div class="col-sm-12">
+						<div class="well">
+						<div class="row">
+							<label class ="form-horizontal col-sm-2 control-label" for="secrefid">Security Reference ID</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="secrefid" class="form-control" name="secrefid" placeholder="ID" >
+							</div>
+							<label class="form-horizontal col-xs-1 control-label" for="descr">Description</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="descr" class="form-control" name="descr" placeholder="Description" ></textarea>							
+							</div>
+						</div>
+						
+						<h3>Identifiers</h3><h1></h1>
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="id">ISIN</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="id" class="form-control" name="id" placeholder="ISIN" >
+							</div>		
+															
+							
+						</div>
+						
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="id">SEDOL</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="id" class="form-control" name="id" placeholder="SEDOL" >
+							</div>
+								
+							
+						</div>
+			
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="id">QCIP</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="id" class="form-control" name="id" placeholder="QCIP" >
+							</div>
+							
+							
+						</div>
+			
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="id">Ticker</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="id" class="form-control" name="id" placeholder="Ticker" >
+							</div>		
+								
+							
+						</div>
+						</div>
+						
+						<div class="well">
+						<h3>Security Information</h3><h1></h1>
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="cntry">Country</label>
+							<div class="col-sm-3 form-group">
+								<select id="cntry" name="cntry" class="form-control">
+									<option value="Select..">Select..</option>
+									<option value="India">India</option>
+									<option value="USA">USA</option>
+									<option value="GB">GB</option>
+									<option value="JP">Japan</option>
+								</select>							
+							</div>
+							
+						</div>
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="currency">Currency</label>
+							<div class="col-sm-3 form-group">
+								<select id="currency" name="currency" class="form-control">
+									<option value="Select..">Select..</option>
+									<option value="INR">INR</option>
+									<option value="USD">USD</option>
+									<option value="JPY">JPY</option>
+									<option value="GBP">GBP</option>
+								</select>							
+							</div>	
+							
+						</div>
+						
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="exc">Exchange(if listed)</label>
+							<div class="col-sm-3 form-group">
+								<select id="exc" name="exc" class="form-control">
+									<option value="Select..">Select..</option>
+									<option value="NYSE">NYSE</option>
+									<option value="AMEX">AMEX</option>
+									<option value="NASDAQ">NASDAQ</option>
+									<option value="TSE">TSE</option>
+								</select>							
+							</div>
+							
+						</div>
+						
+						<h1></h1>
+						<div class="row">
+							<div class="col-sm-2 form-group">
+								<button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>	
+							</div>
+						</div>
+						</div>
+					</div>
+				</form> 
+			</div>
+		</div>
+	</div>
+</body>

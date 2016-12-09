@@ -1,0 +1,94 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">        
+<link rel="stylesheet" href="styles/jquery-ui.css">      
+<link rel="stylesheet" href="styles/attire.css">
+<link rel="stylesheet" href="styles/css/font-awesome.css">
+<link rel="stylesheet" href="styles/uiFonts.css">
+<link rel="stylesheet" href="styles/fontkit/stylesheet.css">
+<link rel="stylesheet" href="scripts/css/swiper.css">
+<link rel="stylesheet" href="scripts/plugins/impromptu/jquery-impromptu.css">
+<link rel="stylesheet" href="scripts/DatePicker/css/datepicker.css">
+<link rel="stylesheet" href="ntAccordion/css/default.css">
+<link rel="stylesheet" href="ntAccordion/css/component.css">
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+var loginsocket = io.connect('http://localhost/login');
+loginsocket.on('failure_login',function(data){
+    console.log(data);	
+    window.alert(data);
+    loginsocket.disconnect('closed');
+});
+
+function OnLoad(){
+    var currentDate = new Date();
+    var currentHour = currentDate.getHours();
+    var greeting;
+    if(currentHour >= 0 && currentHour <= 12){
+        greeting = 'Good Morning';
+    } else if(currentHour > 12 && currentHour <= 17){
+        greeting = 'Good Afternoon';
+    } else if(currentHour > 17 && currentHour < 24 ){
+        greeting = 'Good Evening';
+    } else {
+        greeting = 'Good Day';
+    }
+	document.getElementById("greetingMessageText").innerHTML+=greeting;
+}
+</script>
+
+<title>Admin Login - Broadridge Financial Solutions</title>
+</head>
+<body onload = "OnLoad()">
+
+	<div id="loginMasterContainer">
+		
+        <div id="logoFloater">
+            <div id="logoHolder">
+                <img src="img/br_logo_transparent.png" width="100%"/>
+            </div>
+            <div id="adminLoginLabel">
+                Admin Login
+            </div>
+        </div>
+        <div id="loginFloater">
+            <div id="loginAccent"></div>
+            <div id="greetingMessageText"></div>
+            <div id="loginBox">
+                <form  method="POST" action="/">
+                	<input type="hidden" name="currentAction" id="currentAction" />
+                    <table width="100%" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td><input class="loginField" type="text" id="username" name="username" placeholder="User Name"/></td>
+                        </tr>
+                        <tr>
+                            <td><input class="loginField" type="password" id="password" name="password" placeholder="Password"/></td>
+                        </tr>
+                        </form>      
+                        <tr>
+                            <td>
+                                <div id="loginButtonEnclosure">
+                                    <button type="submit" id="loginButton">Login</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>                          
+            </div>
+        </div>
+        
+        <div id="footer">
+            <div id="footerLogoHolder"><img src="img/br_logo_transparent.png" width="100%"/></div>
+            <div id="footerTextContent">Reference Data <br/> Proof of Concept - Alpha v1.0</div>
+            <div id="footerDisclaimerHolder"></div>
+        </div>
+		
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,203 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Broadridge Financial Solutions</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="icon" type="image/x-icon" href="css/img/favicon.ico">   
+	<link rel= "stylesheet" href="/css/style.css">
+	<link rel= "stylesheet" href="/css/bootstrap.css">
+	<script type="text/javascript" src="/js/dropdown.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" href="styles/jquery-ui.css">      
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="scripts/plugins/impromptu/jquery-impromptu.css">
+
+</head>
+<body >
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/dashboard">Broadridge</a>
+			</div>
+			<ul class = "nav navbar-nav navbar-right">
+				<li><a href="/logout">Logout</a></li>
+			</ul>
+			<ul class = "nav navbar-nav ">
+				<li class="dropdown"><a href="javascript:void(0)" class="dropbtn" onmouseover="myFunction()">Security Setup</a>
+					<div class="dropdown-content" id="myDropdown">
+						<a href="/users/corporate">Corporate Bond</a>
+						<a href="/users/equity">Equity</a>
+						<a href="/users/equity">Preferred Equity</a>
+						<a href="/users/equity">ETF</a>
+						<a href="/users/warrants">Warrants</a>
+						<a href="/users/warrants">Rights</a>
+						<a href="/users/warrants">ADR</a>
+					</div>
+				</li>
+      			<li><a href="/corporate_enquiry">Enquire Security</a></li>
+		</ul>
+		</div class="container">
+	</nav> 
+	
+	<div class="container" id="csec">
+		<h1 class="well">Corporate Bond Security Setup</h1>
+		<div class="col-lg-12">
+			<div class="row">
+				<form method = "post" action="/corporate"id="create_corporate">
+					<div class="col-sm-12">
+						<div class="well">
+						<div class="row">
+							<label class ="form-horizontal col-sm-2 control-label" for="secrefid">Security Reference ID</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="secrefid" class="form-control" name="Security_Reference_ID" placeholder="ID" >
+							</div>
+							<label class="form-horizontal col-sm-2 control-label" for="descr">Description</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="descr" class="form-control" name="Description" placeholder="Description" ></textarea>							
+							</div>
+						</div>
+						
+						<h3>Identifiers</h3>
+						<div class="row">	
+							<label class="form-horizontal col-sm-2 control-label" for="isin">ISIN</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="isin" class="form-control" name="ISIN" placeholder="ISIN" >
+							</div>	
+							<label class="form-horizontal col-sm-2 control-label" for="id">CUSIP</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="id" class="form-control" name="CUSIP" placeholder="CUSIP" >
+							</div>
+						</div>
+						
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="sedol">SEDOL</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="sedol" class="form-control" name="SEDOL" placeholder="SEDOL" >
+							</div>
+							<label class="form-horizontal col-sm-2 control-label" for="id">Ticker</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="id" class="form-control" name="Ticker" placeholder="Ticker" >
+							</div>	
+						</div>
+						</div>
+						
+						<div class="well">
+						<h3>Security Information</h3>
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="cntry">Country</label>
+							<div class="col-sm-3 form-group">
+								<select id="cntry" name="Country" class="form-control">
+									<option value="Select..">Select..</option>
+									<option value="India">India</option>
+									<option value="USA">USA</option>
+									<option value="GB">GB</option>
+									<option value="JP">Japan</option>
+								</select>							
+							</div>
+							<label class="form-horizontal col-sm-2 control-label" for="currency">Currency</label>
+							<div class="col-sm-3 form-group">
+								<select id="currency" name="Currency" class="form-control">
+									<option value="Select..">Select..</option>
+									<option value="INR">INR</option>
+									<option value="USD">USD</option>
+									<option value="JPY">JPY</option>
+									<option value="GBP">GBP</option>
+								</select>							
+							</div>	
+						</div>
+						
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="exc">Exchange(if listed)</label>
+							<div class="col-sm-3 form-group">
+								<select id="exc" name="Exchange" class="form-control">
+									<option value="Select..">Select..</option>
+									<option value="NYSE">NYSE</option>
+									<option value="AMEX">AMEX</option>
+									<option value="NASDAQ">NASDAQ</option>
+									<option value="TSE">TSE</option>
+								</select>							
+							</div>
+							<label class="form-horizontal col-sm-2 control-label" for="mdate">Maturity Date</label>
+							<div class="col-sm-3 form-group">
+								<input type="date" id="mdate" class="form-control" name="Maturity_Date" placeholder="Maturity Date" >
+							</div>	
+						</div>
+						</div>
+						
+						<div class="well">
+						<h3>Coupon Information</h3>
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="coupon">Coupon</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="coupon" class="form-control" name="Coupon" placeholder="Coupon" >
+							</div>		
+							<label class="form-horizontal col-sm-2 control-label" for="ddate">Dated Date</label>
+							<div class="col-sm-3 form-group">
+								<input type="date" id="ddate" class="form-control" name="Dated_Date" placeholder="Dated Date" >
+							</div>	
+						</div>						
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="fcdate">First Coupon Date</label>
+							<div class="col-sm-3 form-group">
+								<input type="date" id="fcdate" class="form-control" name="First_Coupon_Date" placeholder="Coupon Date" >
+							</div>		
+							<label class="form-horizontal col-sm-2 control-label" for="frequency">Pay Frequency</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="frequency" class="form-control" name="Frequency" placeholder="Frequency" >
+							</div>	
+						</div>
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="lcoupon">First Coupon</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="lcoupon" class="form-control" name="First_Coupon" placeholder="Coupon ID" >
+							</div>		
+							<label class="form-horizontal col-sm-2 control-label" for="dccoupon">Day Coupon Convention</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="dccoupon" class="form-control" name="Day_Convention_Coupon" placeholder="Count ID" >
+							</div>	
+						</div>
+						</div>
+						
+						<div class="well">
+						<h3>Custom Information(For Convertible Bond)</h3>
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="sdate">Settelment Date</label>
+							<div class="col-sm-3 form-group">
+								<input type="date" id="sdate" class="form-control" name="Settelment_Date" placeholder="Settelment Date" >
+							</div>		
+							<label class="form-horizontal col-sm-2 control-label" for="cedate">Conversion Effective Date</label>
+							<div class="col-sm-3 form-group">
+								<input type="date" id="cedate" class="form-control" name="Conversation_Effective_Date" placeholder="Start Date" >
+							</div>	
+						</div>	
+			
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="cprice">Conversion Price</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="cprice" class="form-control" name="Conversation_Price" placeholder="Price" >
+							</div>
+							<label class="form-horizontal col-sm-2 control-label" for="cratio">Conversion Ratio</label>
+							<div class="col-sm-3 form-group">
+								<input type="text" id="cratio" class="form-control" name="Conversation_Ratio" placeholder="Ratio" >
+							</div>
+						</div>
+						
+						
+						<div class="row">
+							<div class="col-sm-2 form-group">
+								<button type="submit" class="btn btn-lg btn-primary btn-block" id="myBtn" >Submit</button>	
+							</div>
+						</div>
+						
+						</div>
+					</div>
+				</form> 
+			</div>
+		</div>
+	</div>
+</body>

@@ -1,0 +1,637 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">        
+<link rel="stylesheet" href="styles/jquery-ui.css">      
+<link rel="stylesheet" href="styles/attire.css">
+<link rel="stylesheet" href="styles/css/font-awesome.css">
+<link rel="stylesheet" href="styles/uiFonts.css">
+<link rel="stylesheet" href="styles/fontkit/stylesheet.css">
+<link rel="stylesheet" href="scripts/css/swiper.css">
+<link rel="stylesheet" href="scripts/plugins/impromptu/jquery-impromptu.css">
+<link rel="stylesheet" href="scripts/DatePicker/css/datepicker.css">
+<link rel="stylesheet" href="ntAccordion/css/default.css">
+<link rel="stylesheet" href="ntAccordion/css/component.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="css/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+$(".leftPanelNavigationText").click(function () {
+
+    $leftPanelNavigationText = $(this);
+    //getting the next element
+    $leftPanelNavigationSubItem = $leftPanelNavigationText.next();
+    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+    $leftPanelNavigationSubItem.slideToggle(500, function () {
+        //execute this after slideToggle is done
+        //change text of header based on visibility of content div
+       
+    });
+
+});
+</script>
+<script>
+/*var dashsocket = io.connect('http://localhost:7065');
+loginsocket.on('setup_success',function(data){
+	window.alert(data);
+	// Get the modal
+	var modal = document.getElementById('myModal');
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("coreForm");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks the button, open the modal 
+	btn.onload = function() {
+	    modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	    modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+})
+dashsocket.on('setup_fail',function(data){
+	window.alert(data);
+});*/	
+</script>
+
+<title>Broadridge Financial Solutions</title>
+</head>
+<body >
+<div id="myModal" class="modal">
+
+<!-- Modal content -->
+<div class="modal-content">
+  <div class="modal-header">
+    <span class="close">&times</span>
+    <h2>Modal Header</h2>
+  </div>
+  <div class="modal-body">
+    <p>Some text in the Modal Body</p>
+    <p>Some other text...</p>
+  </div>
+  <div class="modal-footer">
+    <h3>Modal Footer</h3>
+  </div>
+</div>
+
+</div>
+
+    <form id="coreForm" method="post" action="ajaxHandler">
+        <input type="hidden" name="currentAction" id="currentAction"/>
+        <input type="hidden" name="caller" id="caller"/>
+    </form>
+    
+	<div id="globalContainer">
+		<div id="headerSection">
+			<div id="headerLogoSection"><a href="/"><img src="img/br_logo_transparent.png" width="100%"/></a></div>
+			<div id="pageTitleSection">
+				<div id="pageTitleText">Admin</div>
+			</div>
+            <div id="signOut"><a href="/logout"><div id="signOutIcon"><i class="fa fa-sign-out" ></i></div></a></div>
+		</div>
+        
+        <div id="headFiller"></div>
+	
+        <div id="leftPanel">
+		<div class="panel-group" >
+	        <div class="leftPanelNavigationItem" id="nav_dashboard" onclick="window.location.href='/dashboard'">
+	            <div class="leftPanelNavigationIconSection">
+	                <div class="leftPanelIconHolder"><i class="fa fa-bar-chart" aria-hidden="true"> </i></div>
+	            </div>
+	            <div class="leftPanelNavigationTextSection">
+	                <div class="leftPanelNavigationText">Dashboard</div>
+	            </div>
+	            <div class="leftNavigationPanelBlimp"><img class="leftPanelBlimp" src="img/white_blimp.png" /></div>
+	        </div>
+        
+        <div class="panel panel-default">
+			<div class="leftPanelNavigationItem" id="nav_users">
+	            <div class="leftPanelNavigationIconSection">
+	                <div class="leftPanelIconHolder"><i class="fa fa-user" aria-hidden="true"> </i></div>
+	            </div>
+	            <div class="leftPanelNavigationTextSection">
+	                <div class="leftPanelNavigationText" data-toggle="collapse" href="#collapse1">Security Setup</div>
+	            </div>
+	            <div class="leftNavigationPanelBlimp"><img class="leftPanelBlimp" src="img/white_blimp.png" /></div>
+	        </div>
+	    	<div id="collapse1" class="panel-collapse collapse">
+		        <div class="leftPanelNavigationSubItem" >
+			        <div class="leftPanelNavigationTextSection" style="margin-left:40px">
+			            <div class="leftPanelNavigationText" onclick="window.location.href='/corporate'">Corporate Bond</div>
+			        </div>
+		        </div>	
+		        <div class="leftPanelNavigationSubItem" >
+			        <div class="leftPanelNavigationTextSection" style="margin-left:40px">
+			            <div class="leftPanelNavigationText" onclick="window.location.href='/equity'">Equity</div>
+			        </div>
+		        </div>	
+		        <div class="leftPanelNavigationSubItem" >
+			        <div class="leftPanelNavigationTextSection" style="margin-left:40px">
+			            <div class="leftPanelNavigationText " onclick="window.location.href='/equity'">Preferred Equity</div>
+			        </div>
+		        </div>
+		        <div class="leftPanelNavigationSubItem" >
+			        <div class="leftPanelNavigationTextSection" style="margin-left:40px">
+			            <div class="leftPanelNavigationText " onclick="window.location.href='/equity'">ETF</div>
+			        </div>
+		        </div>	
+		        <div class="leftPanelNavigationSubItem" >
+			        <div class="leftPanelNavigationTextSection" style="margin-left:40px">
+			            <div class="leftPanelNavigationText " onclick="window.location.href='/warrants'">Warrants</div>
+			        </div>
+		        </div>	
+		        <div class="leftPanelNavigationSubItem" >
+			        <div class="leftPanelNavigationTextSection" style="margin-left:40px">
+			            <div class="leftPanelNavigationText " onclick="window.location.href='/warrants'">Rights</div>
+			        </div>
+		        </div>
+		        <div class="leftPanelNavigationSubItem" >
+			        <div class="leftPanelNavigationTextSection" style="margin-left:40px">
+			            <div class="leftPanelNavigationText " onclick="window.location.href='/warrants'">ADR</div>
+			        </div>
+		        </div>
+	        </div>
+	    </div>
+	        <div class="leftPanelNavigationItem" id="nav_meetings" >
+	            <div class="leftPanelNavigationIconSection">
+	                <div class="leftPanelIconHolder"><i class="fa fa-connectdevelop" aria-hidden="true"> </i></div>
+	            </div>
+	            <div class="leftPanelNavigationTextSection">
+	                <div class="leftPanelNavigationText" onclick="window.location.href='/corporate_enquiry'">Enquire Security</div>
+	            </div>
+	            <div class="leftNavigationPanelBlimp"><img class="leftPanelBlimp" src="img/white_blimp.png" /></div>
+	        </div>
+        </div>
+        </div>
+	
+		
+        <div id="contentPanel" style="background-color:#c6dee6">
+            
+            <div id="coreSwipeContainer" class="swiper-container">
+                <div id="coreSwipeWrapper" class="swiper-wrapper">
+                    <div id="dashboardPanel" class="swiper-slide swipe_dotted swiper-no-swiping">
+                        <div class="filler10px"></div>
+                        <div style="font-family:'Open Sans',sans-serif;font-weight:100; font-size:25px; color:#0a0a0a;">Dashboard</div>
+                        
+                        <div id="ecosystemStatisticsSection">
+                            
+                            <div id="coinbaseAddressDisplay">Coinbase Addess : <span id="coinbaseAddress"></span></div>
+                            
+                            <div id="widgetsSection">
+                                
+                                <div id="clientVersionDisplay" class="dashWidget">                                    
+                                    <div class="widgetHeader">Client Version</div>
+                                    <div class="widgetValue">
+                                        <span id="clientVersion">Mist/v0.9.3/darwin/go1.4.1</span>
+                                    </div>
+                                </div>
+                                
+                                <div id="networkIdDisplay" class="dashWidget">                                    
+                                    <div class="widgetHeader">Network Id</div>
+                                    <div class="widgetValue">
+                                        <span id="networkId">3666</span>
+                                    </div>
+                                </div>
+                                
+                                <div id="avgHashDisplay" class="dashWidget">                                    
+                                    <div class="widgetHeader">Avg Network Hash Rate</div>
+                                    <div class="widgetValue">
+                                        <span id="hashRate">36.8 MH/s</span>
+                                    </div>
+                                </div>
+                                
+                                <div id="peerCountDisplay" class="dashWidget">                                    
+                                    <div class="widgetHeader">Peers</div>
+                                    <div class="widgetValue">
+                                        <span id="peerCount">0</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <div id="chainDisplaySection">
+                                
+                                <div class="chainBlock"></div>
+                                <div class="chainLink"></div>
+                                <div class="chainBlock"></div>
+                                <div class="chainLink"></div>
+                                <div class="chainBlock"></div>
+                                <div class="chainLink"></div>
+                                <div class="chainBlock"></div>
+                                <div class="chainLink"></div>
+                                
+                                <div id="animationHolder">
+                                    
+                                    <div id="blockDetails">
+                                        <div id="blockNumberDisplay" class="inlet">Block Number : <span id="blockNo"></span></div>
+                                        <div id="blockSizeDisplay" class="inlet">Block Size : <span id="blockSize"></span></div>
+                                        <div id="transactionCountDisplay" class="inlet">Transaction Count : <span id="transactionCount"></span></div>
+                                        <div id="gasLimitDisplay" class="inlet">Gas Limit : <span id="gasLimit"></span></div>
+                                        <div id="gasUsedDisplay" class="inlet">Gas Used : <span id="gasUsed"></span></div>                                        
+                                    </div>
+                                    
+                                    <div class="sk-folding-cube">
+                                      <div class="sk-cube1 sk-cube"></div>
+                                      <div class="sk-cube2 sk-cube"></div>
+                                      <div class="sk-cube4 sk-cube"></div>
+                                      <div class="sk-cube3 sk-cube"></div>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                            
+                            
+                            
+                            <!--<div id="currentBlockDisplay">
+                                Current Block : <span id="currentBlockNumber">5669</span>
+                            </div>-->
+                        
+                        </div>
+                        
+                    </div>
+                    <div id="usersPanel" class="swiper-slide swipe_dotted">
+                        <div id="userOperationsNavigation">
+                            <div class="navItemSeparator"></div>
+                            <div class="userOperationsNavigationItem" onclick="admin.showCreateUsers(this);">Register<br/>Entity</div>
+                            <div class="navItemSeparator"></div>
+                            <div class="userOperationsNavigationItem" onclick="admin.showAdministerUsers(this);">Administer<br/>Entities</div>
+                            <div class="navItemSeparator"></div>
+                        </div>
+                        <div id="userOperationsContainer" class="swiper-container">
+                            <div id="userOperationsWrapper" class="swiper-wrapper">
+                                <div id="createUserPanel" class="swiper-slide swiper-no-swiping">
+                                    
+                                    <div class="adminPaddingFiller"></div>
+                                    
+                                    <div id="userCreationFormHolder">                                        
+                                        <div class="inputFieldHolder"><input type="text" id="entityName" class="adminTextField" placeholder="Entity Name"/></div>
+                                        <div class="inputFieldHolder" id="entityChoiceSection">
+                                            <select id="entityTypeSelector">
+                                                <option value="0">Select Entity Type</option>
+                                                <option value="1">Institutional Investor</option>
+                                                <option value="2">Global Custodian</option>
+                                                <option value="3">Sub Custodian</option>
+                                                <option value="4">Voting Agent</option>                                         
+                                                <option value="5">Transfer Agent</option>
+                                                <option value="6">Issuer</option>
+                                            </select>        
+                                        </div>
+                                        <div class="inputFieldHolder"><input type="text" id="firstName" class="adminTextField" placeholder="Contact First Name"/></div>
+                                        <div class="inputFieldHolder"><input type="text" id="lastName" class="adminTextField" placeholder="Contact Last Name"/></div>
+                                        <div class="inputFieldHolder"><input type="text" id="email" class="adminTextField" placeholder="Contact Email Address"/></div>
+                                        <div class="inputFieldHolder"><input type="button" id="createUserButton" value="Create Entity" onclick="admin.execCreateEntity(this)"/></div>
+                                    </div>
+                                    
+                                    <div id="entityCreationNotification" style="display:none;">
+                                    	Entity Created. Please use the OTU below to activate 
+                                        <div id="otuUrlDisplay"></div>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div id="administerUsersPanel" class="swiper-slide swiper-no-swiping">
+
+	                                <div style="width:100%; height:100%; overflow-y:auto;">
+	                                	<div class="adminPaddingFiller"></div>
+	                                    <div id="fullWidthLoading"><img src="img/loading_green_32.gif" /></div>
+	                                    <div id="userListing">
+	                                    
+	                                    </div>
+	                                </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="meetingsPanel" class="swiper-slide swipe_dotted swiper-no-swiping">
+                        
+                        <div id="meetingOperationsNavigation">
+                            <div class="navItemSeparator"></div>
+                            <div class="userOperationsNavigationItem" onclick="admin.showCreateMeetingPanel(this);">Create<br/>Meeting</div>
+                            <div class="navItemSeparator"></div>
+                            <div class="userOperationsNavigationItem" onclick="admin.showDeployMeetingPanel(this);">Deploy<br/>Meeting</div>
+                            <div class="navItemSeparator"></div>
+                            <div class="userOperationsNavigationItem" onclick="admin.showManageMeetingsPanel(this);">Manage<br/>Meetings</div>
+                            <div class="navItemSeparator"></div>
+                            <div class="userOperationsNavigationItem" onclick="admin.showManageEntitlementsPanel(this);">Manage<br/>Entitlements</div>
+                            <div class="navItemSeparator"></div>
+                            <div class="userOperationsNavigationItem" onclick="admin.showManageMultiSigPanel(this);">Manage<br/>MultiSig</div>
+                            <div class="navItemSeparator"></div>                            
+                        </div>
+                        <div class="filler10px"></div>
+                        <div id="meetingOperationsContainer" class="swiper-container">
+                            <div id="meetingOperationsWrapper" class="swiper-wrapper">
+                                
+                                <div id="createMeetingPanel" class="swiper-slide swiper-no-swiping">
+                                    
+                                    <div  style="overflow-y:auto; overflow-x:auto; width:100%; height:100%;">
+                                        
+                                        <div class="panelHeader">                                            
+                                            <div style="float:left">Create Meeting</div>
+                                            <div style="float:right"><button type="button" id="deployMeetingButton" onclick="meetingHandler.createMeetingFromForm();">Submit Meeting</button></div>                                            
+                                        </div>
+                                        <div id="meetingInfoFormHolder">
+                                            
+                                            <!--<table>
+                                                <tr>
+                                                    <td>-->
+                                                        <div id="meetingAttributes">
+                                                            <div class="meetingSectionHeader">Meeting Attributes</div>
+                                                            <table>
+                                                            	<tr>
+                                                                    <td>MultiSig Eligible</td>
+                                                                    <td>
+                                                                    	<select id="multiSig">
+                                                                    		<option value="true">Yes</option>
+                                                                    		<option value="false">No</option>
+                                                                    	</select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Meeting ID</td>
+                                                                    <td><input type="text" maxlength="6" id="meetingId" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>CINS</td>
+                                                                    <td><input type="text" maxlength="9" id="cins" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>ISIN</td>
+                                                                    <td><input type="text" maxlength="12" id="isin" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Meeting Type</td>
+                                                                    <td><input type="text" maxlength="3" id="meetingType" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Issuer Name</td>
+                                                                    <td><input type="text" maxlength="80" id="issuerName" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Meeting Location</td>
+                                                                    <td><input type="text" maxlength="50" id="meetingLocation" class="meetingInputFields"/></td>
+                                                                </tr>                                                
+                                                                <tr>
+                                                                    <td>Market Country Code</td>
+                                                                    <td><input type="text" maxlength="3" id="marketCountryCode" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Market Country Name</td>
+                                                                    <td><input type="text" maxlength="50" id="marketCountryName" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Standing Instructions</td>
+                                                                    <td><input type="text" maxlength="1" id="standingInstructions" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Split Vote</td>
+                                                                    <td><input type="text" maxlength="1" id="splitVote" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Partial Vote</td>
+                                                                    <td><input type="text" maxlength="1" id="partialVote" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Blocking</td>
+                                                                    <td><input type="text" maxlength="1" id="blocking" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Japan Participating</td>
+                                                                    <td><input type="text" maxlength="1" id="japanParticipating" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Agenda Number</td>
+                                                                    <td><input type="text" maxlength="9" id="agendaNo" class="meetingInputFields"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td style="text-align:right"></td>
+                                                                </tr>
+                                                            </table>    
+                                                        </div>
+                                                    <!--</td>-->
+                                                    
+                                                    <!--<td>-->
+                                                        <div id="miscMeetingAttribContainer">
+                                                            <div id="meetingTimeLines">
+                                                                <div class="meetingSectionHeader">Meeting Timelines</div>
+                                                                <table>
+                                                                    <tr>
+                                                                        <td>Record Date</td>
+                                                                        <td><input class="meetingInputFields datepicker-here" data-date-format="yyyy mm dd" data-language='en' type="text" id="recordDate" /></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Meeting Date &amp; Time</td>
+                                                                        <td><input class="meetingInputFields datepicker-here"  data-time-format='hh:ii AA' data-date-format="yyyy mm dd" data-language='en' data-timepicker="true" type="text" id="meetingDateAndTime" class="meetingInputFields"/></td>
+                                                                    </tr>                                                    
+                                                                    <tr>
+                                                                        <td>Cutoff Date</td>
+                                                                        <td><input class="meetingInputFields datepicker-here" data-language='en' data-date-format="yyyy mm dd" type="text" id="cutoffDate" class="meetingInputFields"/></td>
+                                                                    </tr>                                                    
+                                                                </table>
+                                                            </div>
+
+                                                            <div id="addProposalsSection">
+                                                                <div class="meetingSectionHeader">Add Proposals</div>
+                                                                <table id="proposals">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div style="float:left; width:90%;"><input type="text" class="proposalField" placeholder="Enter Proposal" /></div>                                                                
+                                                                            <div class="deleteIcon" onclick="core.removeProposal(this);"><i class="fa fa-minus-square-o" aria-hidden="true"></i></div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                <div class="widgetBottomButtons"><span class="widgetIcon" id="addProposalButton" onclick="core.appendProposal();"><i class="fa fa-plus" aria-hidden="true"></i></span></div>
+                                                            </div>
+
+                                                            <!-- <div id="addAccountsSection">
+                                                                <div class="meetingSectionHeader">Add Accounts</div>
+                                                                <table id="accounts">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div style="float:left; width:90%;">
+                                                                                <input type="text" class="accountNumberField" placeHolder="Account Number"/>
+                                                                                <input type="text" class="sharesField" placeHolder="Shares"/>
+                                                                            </div>
+                                                                            <div class="deleteIcon" onclick="core.removeAccount(this);"><i class="fa fa-minus-square-o" aria-hidden="true"></i></div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                <div class="widgetBottomButtons"><span class="widgetIcon" id="addAccountButton" onclick="core.appendAccount();"><i class="fa fa-plus" aria-hidden="true"></i></span></div>                                                    
+                                                            </div> -->
+                                                        </div>        
+                                                    <!--</td>
+                                                </tr>
+                                            </table>-->
+                                            
+                                            
+                                            
+                                            
+                                        
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div id="deployMeetingsPanel" class="swiper-slide swiper-no-swiping">
+                                    
+                                    <div id="meetingDetailsContainer">
+                                        <div class="deployMeetingHeading">Deploy Meeting</div>
+                                        <div>
+                                            <textarea id="meetingJsonData" placeholder="Meeting Json Feed"></textarea>
+                                        </div>
+                                        <div style="text-align:right; width:90%"><button type="button" id="deployMeetingButton" onclick="meetingHandler.createMeetingFromJson();">Deploy Meeting</button></div>
+                                        
+                                        <div id="deployNotificationArea">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div id="manageMeetingsPanel" class="swiper-slide swiper-no-swiping">
+                                    <div id="meetingAdministrationListing"></div>
+                                </div>
+                                
+                                <div id="manageEntitlementsPanel" class="swiper-slide swiper-no-swiping">
+                                	<div style="width:100%; height:100%; overflow-y:auto;">
+                                		<div class="panelHeader">                                            
+	                                        <div style="float:left">Manage Entitlements</div>                                        
+	                                    </div>
+	                                    
+	                                    <div id="meetingEntitlementsContent">                                        
+                                        
+	                                        <div id="entitleMentAdditionSection">
+	                                            <input type="text" id="entitlementMeetingAddress" placeholder="Meeting Address" />
+	                                            
+	                                            <div class="addEntitlementsSection">
+	                                                <div class="meetingSectionHeader">Add Entitlements</div>
+	                                                    <table id="entitlements">
+	                                                    	<tr>
+										                        <td>
+										                        	Entity : 
+										                            <select class="entitySelector">
+										                            	<option value="0">Select Entity</option>
+										                            </select>
+										                        </td>
+										                    </tr>
+	                                                        <tr>
+	                                                            <td>
+	                                                                <div style="float:left; width:90%;">
+	                                                                    <input type="text" class="accountNumberField" placeHolder="Account Number"/>
+	                                                                    <input type="text" class="sharesField" placeHolder="Shares"/>
+	                                                                </div>
+	                                                                <div class="deleteIcon" onclick="core.removeEntitlement(this);"><i class="fa fa-minus-square-o" aria-hidden="true"></i></div>
+	                                                            </td>
+	                                                        </tr>
+	                                                    </table>
+	                                                    <div class="widgetBottomButtons"><span class="widgetIcon" id="addAccountButton" onclick="core.appendEntitlement(this);"><i class="fa fa-plus" aria-hidden="true"></i></span></div>                                                                                                    
+	                                            </div>
+	                                            
+	                                            <div class="addEntitlementsSection">
+	                                                <div class="meetingSectionHeader">Add Entitlements</div>
+	                                                    <table id="entitlements">
+	                                                    	<tr>
+										                        <td>
+										                        	Entity : 
+										                            <select class="entitySelector">
+										                                <option value="0">Select Entity</option>
+										                            </select>
+										                        </td>
+										                    </tr>
+	                                                        <tr>
+	                                                            <td>
+	                                                                <div style="float:left; width:90%;">
+	                                                                    <input type="text" class="accountNumberField" placeHolder="Account Number"/>
+	                                                                    <input type="text" class="sharesField" placeHolder="Shares"/>
+	                                                                </div>
+	                                                                <div class="deleteIcon" onclick="core.removeEntitlement(this);"><i class="fa fa-minus-square-o" aria-hidden="true"></i></div>
+	                                                            </td>
+	                                                        </tr>
+	                                                    </table>
+	                                                    <div class="widgetBottomButtons"><span class="widgetIcon" id="addAccountButton" onclick="core.appendEntitlement(this);"><i class="fa fa-plus" aria-hidden="true"></i></span></div>                                                                                                    
+	                                            </div>
+	                                            
+	                                                                                        
+	                                            <div style="text-align:right; margin-top:10px;"><button type="button" id="deployMeetingButton" onclick="core.applyEntitlements();">Apply Entitlements</button></div>
+	                                        </div>
+	                                        
+	                                    </div>
+	                                    
+                                	</div>
+                                    
+                                    
+                                    
+                                    <div id="entitlementNotificationSection" style="color:#454545; margin-top:20px; text-align:center; font-family:'Open Sans',sans-serif; font-size: 20px; font-weight:100;"></div>
+                                </div>
+                                
+                                <div id="manageMultiSigPanel" class="swiper-slide swiper-no-swiping">
+                                	<div style="width:100%; height:100%; overflow-y:auto;">
+	                                    <div class="panelHeader">                                            
+	                                        <div style="float:left">Manage Multisig Participants</div>                                        
+	                                    </div>
+	                                    
+	                                    <div id="meetingMultiSigContent">
+	                                        
+	                                        <div style="width:700px">
+	                                        	<input type="text" id="multiSigMeetingAddress" placeholder="Meeting Address" style="width: 90%; margin-left:20px; margin-bottom:20px; font-family: 'Open Sans',sans-serif; font-weight: 100;"/>
+	                                        	<div style="width: 90%; margin-left:20px; margin-bottom:20px;font-family: 'Open Sans', sans-serif; color: #767575;font-weight: 100;">Minimum Signature Count : <input type="text" id="minimumSignatureCount" placeholder="Minimum Signature Count" value="0" style="font-family: 'Open Sans',sans-serif; font-weight: 100;"></div>
+	                                        	<div id="eligibleParticipantList" class="droppableListing">
+		                                        	<div class="dropPanelHeading">
+										              Eligible MultiSig Participants
+										            </div>
+										            <div id="eligibleParticipantsContainer" class="droppableContainer">
+										            	
+										            </div>
+		                                        </div>
+		                                        
+		                                        <div id="RegisteredParticipantList" class="droppableListing">
+		                                        	<div class="dropPanelHeading">
+										              Registered MultiSig Participants
+										            </div>
+										            <div id="registeredParticipantsContainer" class="droppableContainer">
+										            	
+										            </div>
+		                                        </div>
+	                                        	
+	                                        	<div style="width:100%; clear:both; text-align:right;">
+	                                        		<button type="button" id="attachParticipantsButton" onclick="admin.attachMultiSigParticipants();">Attach Participants</button>
+	                                        	</div>
+	                                        	
+	                                        </div>
+	                                        
+	                                        <div id="multisigNotificationSection" style="color:#454545; margin-top:20px; text-align:center; font-family:'Open Sans',sans-serif; font-size: 20px; font-weight:100;"></div>
+	                                        
+	                                    </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                    </div>                    
+                </div>
+            </div>
+            
+        </div>
+	
+	</div>
+	
+</body>
+</html>
+    

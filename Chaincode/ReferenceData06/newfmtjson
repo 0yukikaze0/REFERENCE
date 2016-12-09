@@ -1,0 +1,47 @@
+{\"SecurityData\":
+	{
+		\"commonData\" :
+		[ 
+			\"masterSecID\" : \"1288261\",
+ 			\"refClientID\" : \"JPM01\",
+ 			\"licenceKey\" : \"BBGEQ0101010\",
+ 			\"refSecType\" : \"50\",
+ 			\"sedol\" : \"BYY6625\",
+ 			\"createDateTime\" : \"11/17/2016 01:20\",
+ 			\"chanegDateTime\" : \"11/17/2016 01:20\",
+ 			\"activeFlag\" : \"A\" 			  		  	
+	  	],
+	  	\"BBGData\" :
+	  	[
+		  	\"secIdCodeTypeId\" : \"292\",		  	
+		  	\"secCode\" : \"IBMTEST\",		  	 
+		  	\"name\" : \"IBM 5.70% 09/11/2026\",
+		  	\"refCountryID_IssueReg\" : \"226\",
+		  	\"refCountryID\" : \"226\",
+		  	\"refExchangeID\" : \"75\",
+		  	\"expyDate\" : \"09/11/2026\",
+		  	\"redemType\" : \"C\",
+		  	\"cvrRatio\" : \"\",
+		  	\"adrRatio\" : \"\"	,
+		  	\"stricePrice\" : \"1000\",
+		  	\"issueMaturityDate\" : \"9/11/2026\",
+		  	\"rate\" : \"5.7\",
+		  	\"issueDatedDate\" : \"09/14/2007\",
+		  	\"refFrequncyID\" : \"Semi\",
+		  	\"cusip\" : \"459200GJ4\",
+		  	\"isin\" : \"US459200GJ41\",
+		  	\"ticker\" : \"IBM5.70_01\"
+
+		],
+		\"IDCData\" :
+		[
+		  	\"issueFirstCouponDate\" : \"2921\",
+			\"issueFirstSettleDate\" : \"IBMTEST1\",		  	 
+			\"refFirstCpnTypeID\" : \"IBM TEST Inc11\",
+			\"refDayCountID\" : \"30_360\",
+			\"convRatio\" : \"\",
+			\"convPrice\" : \"\",
+			\"convStartDate\" : \"\"			
+		]
+	}
+}

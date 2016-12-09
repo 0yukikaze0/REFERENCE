@@ -1,0 +1,66 @@
+
+{"SecurityData":
+	{
+		"commonData" :
+		[ 
+			{
+				"field" : "masterSecID",
+				"value" : "IBM001"
+ 			},
+ 			{
+ 				"field" : "refClientID",
+ 				"value" : "JPM01"
+ 			},
+ 			{
+ 				"field" : "licenceKey",
+ 				"value" : "BBGEQ0101010"
+ 			},	  	
+ 			{
+ 				"field" : "refSecType",
+ 				"value" : "50"
+ 			},
+ 			{
+ 				"field" : "createDateTime",
+ 				"value" : "11/17/2016 01:20"
+ 			},
+ 			{
+				"field" : "chanegDateTime",
+ 				"value" : "11/17/2016 01:20"
+ 			},
+ 			{
+				"field" : "activeFlag",
+ 				"value" : "A"
+ 			}  		  	
+	  	],
+	  	"BBG" :
+	  	[
+		  	{
+		  	 "field" : "secIdCodeTypeId",
+		  	 "value" : "292"		  	
+		  	},
+		  	{
+		  	 "field" : "secCode",
+		  	 "value" : "IBMTEST"		  	 
+		  	},
+		  	{
+		  	 "field" : "name",
+		  	 "value" : "IBM TEST Inc"		  	 
+		  	}
+		],
+		"IDC" :
+		[
+		  	{
+		  	 "field" : "secIdCodeTypeId",
+		  	 "value" : "2921"		  	
+		  	},
+		  	{
+		  	 "field" : "secCode",
+		  	 "value" : "IBMTEST1"		  	 
+		  	},
+		  	{
+		  	 "field" : "name",
+		  	 "value" : "IBM TEST Inc11"		  	 
+		  	}			
+		]
+	}
+}

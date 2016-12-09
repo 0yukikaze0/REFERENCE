@@ -1,0 +1,73 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Broadridge Financial Solutions</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="icon" type="image/x-icon" href="css/img/favicon.ico">   
+<link rel= "stylesheet" href="/css/style.css">
+<link rel= "stylesheet" href="/css/bootstrap.css">
+<script type="text/javascript" src="/js/dropdown.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+var loginsocket = io.connect('http://localhost:7060');
+
+loginsocket.on('failure_query_equity',function(data){
+    console.log(data);
+    window.alert(data);
+})
+</script>
+</head>
+<body >
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+	      	<div class="navbar-header">
+	      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	      			<span class="sr-only">Toggle navigation</span>
+	      			<span class="icon-bar"></span>
+	      			<span class="icon-bar"></span>
+	      			<span class="icon-bar"></span>
+	      		</button>
+	      		<a class="navbar-brand" href="/">Broadridge</a>
+	      	</div>
+	      		<ul class = "nav navbar-nav navbar-right">
+	          		<li><a href="/users/logout">Logout</a></li>
+	          	</ul>
+	          	<ul class = "nav navbar-nav ">
+				<li class="dropdown"><a href="javascript:void(0)" class="dropbtn" onmouseover="myFunction()">Security Setup</a>
+					<div class="dropdown-content" id="myDropdown">
+						<a href="/users/corporate">Corporate Bond</a>
+						<a href="/users/equity">Equity</a>
+						<a href="/users/equity">Preferred Equity</a>
+						<a href="/users/equity">ETF</a>
+						<a href="/users/warrants">Warrants</a>
+						<a href="/users/warrants">Rights</a>
+						<a href="/users/warrants">ADR</a>
+					</div>
+				</li>
+				<li class="dropdown"><a href="javascript:void(0)" class="dropbtn" onmouseover="myFunction()">Enquire Security</a>
+				<div class="dropdown-content" id="myDropdown">
+					<a href="/users/corporate_enquiry">Corporate Bond</a>
+					<a href="/users/equity_enquiry">Equity</a>
+					<a href="/users/equity_enquiry">Preferred Equity</a>
+					<a href="/users/equity_enquiry">ETF</a>
+					<a href="/users/warrants_enquiry">Warrants</a>
+					<a href="/users/warrants_enquiry">Rights</a>
+					<a href="/users/warrants_enquiry">ADR</a>
+				</div>
+			</li>		
+		</ul>
+	    </div class="container">
+	</nav>   
+	
+	<div class="container" id="esec">	
+	<h1 class="well">Equity/Preferred Equity/ETF Security Enquiry</h1>
+	    <form class="well form-signin" method="post" action="/equity_enquiry">
+	    	<div>
+	        	<input type="int" id="sectype" class="form-control" name="Security_Type" placeholder="Security Type" >
+	        	<input type="int" id="secid" class="form-control" name="Security_ID" placeholder="Security ID" >
+	        	<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+	        </div>	
+	    </form>
+    </div>
+    
+</body>
+    

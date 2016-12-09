@@ -1,0 +1,95 @@
+{
+  "chainName" : "refChain",
+  "KeyValStore" :"keyValStore1",
+  "deployWaitTime": "40",
+  "ca": {
+    "ca_url":"grpc://10.10.10.100:7054"
+  },
+  "peers":[
+    {
+      "name":"vp0",
+      "peer_url":"grpc://10.10.10.100:7051"
+    }
+  ],
+  "users": [
+    {
+      "username":"admin",
+      "secret":"Xurw3yU9zI0l",
+      "affiliation": "institution_a"
+    },
+    {
+      "username":"lukas",
+      "secret":"NPKYL39uKbkj",
+      "affiliation": "bank_a"
+    }
+  ],
+  "attributeRequest":{
+    "attribute":"eqtylicence"
+  },
+  "deployRequest":{
+    "chaincodePath":"ReferenceData06",
+    "chaincodeName":"mycc",
+    "functionName":"init",
+    "args":[]
+  },
+  "invokeRequest1":{
+    "functionName":"newSecuritySetup",
+    "args": ["{\"SecurityData\": {\"commonData\" : [{\"masterSecID\" : \"1288261\", \"refClientID\" : \"JPM01\", \"licenceKey\" : \"BBGEQ0101010\", \"refSecType\" : \"50\", \"sedol\" : \"BYY6625\", \"createDateTime\" : \"11/17/2016 01:20\", \"chanegDateTime\" : \"11/17/2016 01:20\", \"activeFlag\" : \"A\"} ], \"BBGData\" : [{\"secIdCodeTypeId\" : \"292\", \"secCode\" : \"IBMTEST\", \"name\" : \"IBM 5.70% 09/11/2026\", \"refCountryID_IssueReg\" : \"226\", \"refCountryID\" : \"226\", \"refExchangeID\" : \"75\", \"expyDate\" : \"09/11/2026\", \"redemType\" : \"C\", \"cvrRatio\" : \"\", \"adrRatio\" : \"\", \"stricePrice\" : \"1000\", \"issueMaturityDate\" : \"9/11/2026\", \"rate\" : \"5.7\", \"issueDatedDate\" : \"09/14/2007\", \"refFrequncyID\" : \"Semi\", \"cusip\" : \"459200GJ4\", \"isin\" : \"US459200GJ41\", \"ticker\" : \"IBM5.70_01\"} ], \"IDCData\" : [{\"issueFirstCouponDate\" : \"2921\", \"issueFirstSettleDate\" : \"IBMTEST1\", \"refFirstCpnTypeID\" : \"IBM TEST Inc11\", \"refDayCountID\" : \"30360\", \"convRatio\" : \"\", \"convPrice\" : \"\", \"convStartDate\" : \"\"} ] } }"],
+    "attrs": "eqtylicence"
+  },
+  "invokeRequest2":{
+    "functionName":"newSecuritySetup",
+    "args":["VOD01", "EQTY99", "EQTY", "VOD2781927", "USVOD01012812", "VOD", "SEDOL0101", "VOD Inc", "VODAPHONE", "US", "USD", "09/30/2016", "09/30/2020", "A"],
+    "attrs": "eqtylicence"
+  },
+  "invokeRequest3":{
+    "functionName":"newSecuritySetup",
+    "args":["BR01", "EQTY99", "EQTY", "BR123456", "USBR01010101", "BR", "SEDOL0101", "BR Inc", "Broadridege Financial Solution", "US", "USD", "09/30/2016", "09/30/2020", "A"],
+    "attrs": "eqtylicence"
+  },
+  "invokeRequest4":{
+    "functionName":"newSecuritySetup",
+    "args":["APP01", "EQTY99", "EQTY", "APP123456", "USAPP01010101", "APP", "SEDOL0101", "APP Inc", "APPLE", "US", "USD", "09/30/2016", "09/30/2020", "A"],
+    "attrs": "eqtylicence"
+  },
+  "invokeRequest5":{
+    "functionName":"newSecuritySetup",
+    "args":["TEST01", "EQTY99", "EQTY", "TST123456", "USTST01010101", "TST", "SEDOL0101", "TST Inc", "TEST", "US", "USD", "09/30/2016", "09/30/2020", "A"],
+    "attrs": "eqtylicence"
+  },
+  "invokeRequest6":{
+    "functionName":"newSecuritySetup",
+    "args":["AAME1", "EQTY99", "EQTY", "AAME123456", "USAAM01010101", "AAME", "SEDOL0101", "AAME Inc", "Atlantic American Corporation", "US", "USD", "09/30/2016", "09/30/2020", "A"],
+    "attrs": "eqtylicence"
+  },
+  "queryRequest1":{
+    "functionName":"getSecurityInformation",
+    "args":["1288261","JPM01","adminlicence"],
+    "attrs": "adminlicence"
+  },
+  "queryRequest2":{
+    "functionName":"getSecurityInformation",
+    "args":["VOD01"],
+    "attrs": "eqtylicence"
+  },
+  "queryRequest3":{
+    "functionName":"getSecurityInformation",
+    "args":["BR01"],
+    "attrs": "eqtylicence"
+  },
+  "queryRequest4":{
+    "functionName":"getSecurityInformation",
+    "args":["APP01"],
+    "attrs": "eqtylicence"
+  },
+  "queryRequest5":{
+    "functionName":"getSecurityInformation",
+    "args":["TEST01"],
+    "attrs": "eqtylicence"
+  },
+  "queryRequest6":{
+    "functionName":"getSecurityInformation",
+    "args":["AAME1"],
+    "attrs": "eqtylicence"
+  }
+}

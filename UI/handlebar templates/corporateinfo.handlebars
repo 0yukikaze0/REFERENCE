@@ -1,0 +1,252 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Broadridge Financial Solutions</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="icon" type="image/x-icon" href="css/img/favicon.ico">   
+	<link rel= "stylesheet" href="/css/style.css">
+	<link rel= "stylesheet" href="/css/bootstrap.css">
+	<script src="/socket.io/socket.io.js"></script>
+	
+	<script>
+	function enquireForData(){
+		
+		var infosocket = io.connect('http://localhost:7065');		
+		
+		infosocket.on('success_query_corporate',function(data1){
+			
+			console.log("handler data received :"+data1);
+			
+			var outFields = document.getElementsByTagName('output');
+			
+			for(var i=0;i<outFields.length;i++){
+				outFields[i].value='';
+			}
+			
+			try{
+				
+				var parsedstring=JSON.parse(data1);
+				console.log("console1:"+parsedstring.SecurityData);
+				console.log("String: "+JSON.stringify(parsedstring.SecurityData.commonData[0]));
+				//var stringdata = JSON.stringify(parsedstring[0]);
+				//console.log("console2:"+stringdata);
+				//var parseddarray = JSON.parse(stringdata);
+				//console.log("console3:"+parseddarray);
+			
+				
+				if(parsedstring.SecurityData.commonData[0]){
+					document.getElementById("secrefid").value = parsedstring.SecurityData.commonData[0].masterSecID;
+					document.getElementById("sedol").value = parsedstring.SecurityData.commonData[0].sedol;
+				}
+				
+				if(parsedstring.SecurityData.BBGData){
+					document.getElementById("descr").value = parsedstring.SecurityData.BBGData[0].name;
+				    document.getElementById("isin").value = parsedstring.SecurityData.BBGData[0].isin;
+				    document.getElementById("cusip").value = parsedstring.SecurityData.BBGData[0].cusip;
+				    document.getElementById("ticker").value = parsedstring.SecurityData.BBGData[0].ticker;
+				    document.getElementById("cntry").value = parsedstring.SecurityData.BBGData[0].refCountryID;
+				    document.getElementById("exc").value = parsedstring.SecurityData.BBGData[0].refExchangeID;
+				    document.getElementById("mdate").value = parsedstring.SecurityData.BBGData[0].issueMaturityDate;
+				    document.getElementById("coupon").value = parsedstring.SecurityData.BBGData[0].rate;
+				    document.getElementById("ddate").value = parsedstring.SecurityData.BBGData[0].issueDatedDate;
+				    document.getElementById("frequency").value = parsedstring.SecurityData.BBGData[0].refFrequncyID;
+				}
+				
+				if(parsedstring.SecurityData.IDCData){
+					document.getElementById("fcdate").value = parsedstring.SecurityData.IDCData[0].issueFirstCouponDate;
+				    document.getElementById("sdate").value = parsedstring.SecurityData.IDCData[0].issueFirstSettleDate;
+				    document.getElementById("cprice").value = parsedstring.SecurityData.IDCData[0].convPrice;
+				    document.getElementById("cratio").value = parsedstring.SecurityData.IDCData[0].convRatio;
+				    document.getElementById("lcoupon").value = parsedstring.SecurityData.IDCData[0].refFirstCpnTypeID;
+				    document.getElementById("dccoupon").value = parsedstring.SecurityData.IDCData[0].refDayCountID;
+				    document.getElementById("cedate").value = parsedstring.SecurityData.IDCData[0].convStartDate;
+				}
+			    
+				
+			} catch(e){
+				console.log(e.message);
+			}
+			
+			infosocket.disconnect('closed');
+		});
+		
+	}
+	
+	function getSanitizedValue(){
+		
+	}
+	
+	
+</script>
+
+</head>
+<body onload="enquireForData();">
+	<nav class="navbar navbar-inverse navbar-fixed-top topbar">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/dashboard">Broadridge</a>
+			</div>
+			<ul class = "nav navbar-nav navbar-right">
+				<li><a href="/users/logout">Logout</a></li>
+			</ul>
+			<ul class = "nav navbar-nav ">
+				<li class="dropdown"><a href="javascript:void(0)" class="dropbtn" onmouseover="myFunction()">Security Setup</a>
+					<div class="dropdown-content" id="myDropdown">
+						<a href="/users/corporate">Corporate Bond</a>
+						<a href="/users/equity">Equity</a>
+						<a href="/users/equity">Preferred Equity</a>
+						<a href="/users/equity">ETF</a>
+						<a href="/users/warrants">Warrants</a>
+						<a href="/users/warrants">Rights</a>
+						<a href="/users/warrants">ADR</a>
+					</div>
+				</li>
+				<li>Enquire Security</li>
+			</ul>
+		</div class="container">
+	</nav> 
+	
+	<div class="container" id="csec">
+		<h1 class="well">Corporate Bond Security Setup</h1>
+		<div class="col-lg-12">
+			<div class="row">
+				<form id="form">
+					<div class="col-sm-12">
+						<div class="well">
+						<div class="row">
+							<label class ="form-horizontal col-sm-2 control-label" for="secrefid">Security Reference ID</label>
+							<div class="col-sm-3 form-group">
+								<output id="secrefid" class="form-control" name="Security_Reference_ID" value="" >
+							</div>
+							<label class="form-horizontal col-sm-2 control-label" for="descr">Description</label>
+							<div class="col-sm-3 form-group">
+								<output rows="1" id="descr" class="form-control" name="Description" value="" ></textarea>							
+							</div>
+						</div>
+						
+						<h3>Identifiers</h3><h1></h1>						
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="isin">ISIN</label>
+							<div class="col-sm-3 form-group">
+								<output  id="isin" class="form-control" name="ISIN" value="" >
+							</div>		
+							<label class="form-horizontal col-sm-2 control-label" for="cusip">CUSIP</label>
+							<div class="col-sm-3 form-group">
+								<output  id="cusip" class="form-control" name="CUSIP" value="" >
+							</div>
+						</div>
+						
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="sedol">SEDOL</label>
+							<div class="col-sm-3 form-group">
+								<output  id="sedol" class="form-control" name="SEDOL" value="" >
+							</div>
+							<label class="form-horizontal col-sm-2 control-label" for="ticker">Ticker</label>
+							<div class="col-sm-3 form-group">
+								<output id="ticker" class="form-control" name="Ticker" value="" >
+							</div>
+						</div>
+			
+						</div>
+						
+						<div class="well">
+						<h3>Security Information</h3><h1></h1>
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="cntry">Country</label>
+							<div class="col-sm-3 form-group">
+								<output id="cntry" name="Country" class="form-control" value="">
+							</div>
+							<label class="form-horizontal col-sm-2 control-label" for="currency">Currency</label>
+							<div class="col-sm-3 form-group">
+								<output id="currency" name="Currency" class="form-control" value="">
+							</div>	
+						</div>
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="exc">Exchange(if listed)</label>
+							<div class="col-sm-3 form-group">
+								<output id="exc" name="Exchange" class="form-control"value="">
+							</div>
+							<label class="form-horizontal col-sm-2 control-label" for="mdate">Maturity Date</label>
+							<div class="col-sm-3 form-group">
+								<output id="mdate" class="form-control" name="Maturity_Date" value="" >
+							</div>		
+						</div>
+						</div>
+						
+						<div class="well">
+						<h3>Coupon Information</h3><h1></h1>
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="coupon">Coupon</label>
+							<div class="col-sm-3 form-group">
+								<output id="coupon" class="form-control" name="Coupon" value="" >
+							</div>		
+							<label class="form-horizontal col-sm-2 control-label" for="ddate">Dated Date</label>
+							<div class="col-sm-3 form-group">
+								<output id="ddate" class="form-control" name="Dated_Date" value="" >
+							</div>	
+						</div>						
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="fcdate">First Coupon Date</label>
+							<div class="col-sm-3 form-group">
+								<output id="fcdate" class="form-control" name="First_Coupon_Date" value="" >
+							</div>		
+							<label class="form-horizontal col-sm-2 control-label" for="frequency">Pay Frequency</label>
+							<div class="col-sm-3 form-group">
+								<output id="frequency" class="form-control" name="Frequency" value="" >
+							</div>	
+						</div>
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="lcoupon">First Coupon</label>
+							<div class="col-sm-3 form-group">
+								<output id="lcoupon" class="form-control" name="First_Coupon" placeholder="Coupon ID" >
+							</div>		
+							<label class="form-horizontal col-sm-2 control-label" for="dccoupon">Day Coupon Convention</label>
+							<div class="col-sm-3 form-group">
+								<output id="dccoupon" class="form-control" name="Day_Convention_Coupon" value="" >
+							</div>	
+						</div>
+						</div>
+						
+						<div class="well">
+						<h3>Custom Information(For Convertible Bond)</h3><h1></h1>
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="sdate">Settelment Date</label>
+							<div class="col-sm-3 form-group">
+								<output id="sdate" class="form-control" name="Settelment_Date" value="" >
+							</div>		
+							<label class="form-horizontal col-sm-2 control-label" for="cedate">Conversion Effective Date</label>
+							<div class="col-sm-3 form-group">
+								<output id="cedate" class="form-control" name="Conversation_Effective_Date" value="" >
+							</div>	
+						</div>	
+			
+						<div class="row">
+							<label class="form-horizontal col-sm-2 control-label" for="cprice">Conversion Price</label>
+							<div class="col-sm-3 form-group">
+								<output id="cprice" class="form-control" name="Conversation_Price" value="" >
+							</div>
+							<label class="form-horizontal col-sm-2 control-label" for="cratio">Conversion Ratio</label>
+							<div class="col-sm-3 form-group">
+								<output id="cratio" class="form-control" name="Conversation_Ratio" value=""" >
+							</div>
+						</div>
+						<h2></h2>
+						<div class="row">
+							<div class="col-sm-2 form-group">
+							<button type="reset"  class="btn btn-lg btn-primary btn-block" onclick="window.location.href='/dashboard';">Close</button>	
+							</div>
+						</div>
+						<h1></h1>
+						</div>
+						</div>
+					</div>
+				</form> 
+			</div>
+		</div>
+	</div>
+</body>

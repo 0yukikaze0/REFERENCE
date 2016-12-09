@@ -1,0 +1,46 @@
+{
+  "chainName" : "refChain1",
+  "KeyValStore" :"keyValStore1",
+  "deployWaitTime": "40",
+  "ca": {
+    "ca_url":"grpc://10.10.10.100:7054"
+  },
+  "peers":[
+    {
+      "name":"vp0",
+      "peer_url":"grpc://10.10.10.100:7051"
+    }
+  ],
+  "users": [
+    {
+      "username":"admin",
+      "secret":"Xurw3yU9zI0l",
+      "affiliation": "bank_a"
+    },
+    {
+      "username":"jim",
+      "secret":"6avZQLwcUe9b",
+      "affiliation": "bank_a"
+    }
+  ],
+  "invokeRequest1":{
+    "functionName":"getSecurityInformation",
+    "args":["1288261", "JPM01", "licencekey"]
+  },
+  "queryRequest1":{
+    "functionName":"getSecurityInformation",
+    "args":["1288261", "JPM01", "licencekey"]
+  },
+  "queryRequest2":{
+    "functionName":"getSecurityInformation",
+    "args":["EQTY", "VOD01"]
+  },
+  "queryRequest3":{
+    "functionName":"getSecurityInformation",
+    "args":["EQTY", "BR01"]
+  },
+  "queryRequest4":{
+    "functionName":"getSecurityInformation",
+    "args":["EQTY", "APP01"]
+  }
+}
